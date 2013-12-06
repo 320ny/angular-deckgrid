@@ -153,7 +153,7 @@ angular.module('akoenig.deckgrid').factory('Deckgrid', [
             //
             // Register model change.
             //
-            watcher = this.$$scope.$watchCollection('model', this.$$onModelChange.bind(this), true);
+            watcher = this.$$scope.$watch('model', this.$$onModelChange.bind(this), true);
             this.$$watchers.push(watcher);
 
             //
@@ -331,8 +331,9 @@ angular.module('akoenig.deckgrid').factory('Deckgrid', [
 
         Deckgrid.prototype.$$onModelChange = function $$onModelChange (oldModel, newModel) {
             var self = this;
-
-            self.$$createColumns();
+            if (!angular.equals(oldModel, newModel)){
+              self.$$createColumns();
+            }
         };
 
         /**
