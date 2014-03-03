@@ -188,6 +188,9 @@ angular.module('akoenig.deckgrid').factory('Deckgrid', [
                     layout.classList = content[1].replace(/\./g, ' ').trim();
                 }
             }
+            else {
+                content = "3 .column.column-1-3";
+            }   
 
             return layout;
         };
