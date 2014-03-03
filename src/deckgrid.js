@@ -176,7 +176,9 @@ angular.module('akoenig.deckgrid').factory('Deckgrid', [
         Deckgrid.prototype.$$getLayout = function $$getLayout () {
             var content = $window.getComputedStyle(this.$$elem, ':before').content,
                 layout;
-
+            if (!content){
+                content = "3 .column.column-1-3";
+            }
             if (content) {
                 content = content.replace(/'/g, '');  // before e.g. '3 .column.size-1of3'
                 content = content.replace(/"/g, '');  // before e.g. "3 .column.size-1of3"
@@ -188,9 +190,6 @@ angular.module('akoenig.deckgrid').factory('Deckgrid', [
                     layout.classList = content[1].replace(/\./g, ' ').trim();
                 }
             }
-            else {
-                content = "3 .column.column-1-3";
-            }   
 
             return layout;
         };
